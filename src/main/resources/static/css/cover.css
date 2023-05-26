@@ -1,0 +1,77 @@
+@charset "UTF-8";
+@font-face {
+  font-family:abster;
+  src: url(../font/abster-webfont.woff)format('woff');
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.contaniner{
+  width: 100%;
+  height: 100vh;
+  background-image: url("../images/bobo2.JPG");
+  background-size:  100%;
+  position: absolute;
+}
+.contaniner .header{
+  width: 80%;
+  height: 100px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.contaniner .header  h1 a{
+  text-decoration: none;
+  color: black;
+  font-family: abster;
+}
+.contaniner .nav ul li{
+  display: inline-block;
+  margin: 0 10px;
+}
+.contaniner .nav ul li a{
+  text-decoration: none;
+  color:black;
+  font-size: 19px;
+}
+.contaniner .nav ul li a:hover{
+  color: orange;
+}
+
+.contaniner .hero{
+  position: absolute;
+  left: 75%;
+  top: 50%;
+  transform: translate(-75%,-50%);
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.contaniner .hero h2{
+  font-size: 25px;
+  color:white;
+  margin-bottom: 20px;
+}
+.contaniner .hero p{
+  font-size: 20px;
+    color:white;
+}
+
+.contaniner .hero button{
+   background-color:  none;
+   border:2px solid darkseagreen;
+   color: darkcyan;
+   padding: 15px 20px;
+   border-radius: 20px;
+   margin-top: 30px;
+   outline: none;
+   cursor: pointer;
+   transition: all .4s;
+}
+.contaniner .hero button:hover{
+  background-color: darkslategray;
+}

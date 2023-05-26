@@ -1,0 +1,85 @@
+@charset "UTF-8";
+
+/* 헤더 영역 */
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.contaniner {
+	position: relative;
+	min-height: 100%;
+	padding: 20px;
+	display: flex;
+	flex-wrap: nowrap;
+	gap: 1em;
+}
+
+.contaniner .header {
+	width: 90%;
+	height: 100px;
+	margin: 50px auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	overflow: hidden;
+}
+
+.contaniner .header  h1 a {
+	text-decoration: none;
+	color: black;
+	font-family: abster;
+}
+
+.contaniner .nav ul li {
+	display: inline-block;
+	float: left;
+	margin: 5px;
+	text-align: center;
+	line-height: 30px;
+	padding: 5px;
+}
+
+.contaniner .nav ul li a {
+	text-decoration: none;
+	color: black;
+	font-size: 19px;
+}
+
+.contaniner .nav ul li a:hover {
+	color: orange;
+}
+
+/* main메인 */
+
+.flex-item {
+	height: 15rem;
+	 object-fit: cover;
+}
+
+/* footer영역 */
+.footer {
+	width: 100%;
+	height: 90px;
+	bottom: 0;
+	position: relative;
+	border-top: 1px solid black;
+	padding-top: 30px;
+	color: #808080;
+	font-size: 15px;
+}
+
+.footer p {
+	text-align: left;
+	font-family: abster;
+	margin-left: 50px;
+}
+
+.logo a {
+	padding: 20px;
+	padding-top: 15px;
+}
+
+.btn {
+	text-align: center;
+}

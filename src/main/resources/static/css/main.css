@@ -1,0 +1,63 @@
+@charset "UTF-8";
+
+@font-face {
+	font-family: abster;
+  src: url(../font/abster-webfont.woff)format('woff');
+}
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+.contaniner .header {
+	width: 80%;
+	height: 100px;
+	margin: 0 auto;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.contaniner .header  h1 a {
+	text-decoration: none;
+	color: black;
+	font-family: abster;
+}
+
+.contaniner .nav ul li {
+	display: inline-block;
+	margin: 0 10px;
+}
+
+.contaniner .nav ul li a {
+	text-decoration: none;
+	color: black;
+	font-size: 19px;
+}
+
+.contaniner .nav ul li a:hover {
+	color: orange;
+}
+
+.footer {
+width: 100%;
+  height: 150px;
+  bottom: 0px;
+  position: absolute;
+  border-top: 1px solid #c4c4c4;
+  padding-top: 15px;
+  color: #808080;
+  font-size: 15px;
+}
+
+.footer p{
+	text-align: center;
+}
+
+.logo a{
+	padding:20px;
+	  padding-top: 15px;
+   
+}
+
