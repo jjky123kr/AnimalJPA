@@ -5,6 +5,10 @@ let index={
 				this.save();
 			}); // btn-save 클릭시 아래가 실행 된다.
 			
+			 $("#btn-check-duplicate").on("click", function() {
+			      index.checkDuplicate();
+		    });
+			
 //			
 // $("#btn-login").on("click",()=>{ // function(){},()=>{} this 를 바인딩하기 위해서
 // this.login();
@@ -43,14 +47,47 @@ let index={
     		 dataType:"json"// 요청을 서버로 해서 응답이 왔을때 기본으로 모든적이 문자열(생긴것이
 							// json)이라며=>javascript 오브젝트로변경
     		// .을 통해서 사용 => 회원가입 수행 요청
-    	}).done(function(resp){
-    		alert("회원가입이 완료되었습니다.");    		
-    		location.href="/main"; 
-    		
-    	}).fail(function(error){ // 에러
-            alert(JSON.stringify(error));    		
-    	}); 
+    	}).done(function(resp) {
+    	    if (resp.status === 200) {
+    	        alert("회원가입이 완료되었습니다.");
+    	        location.href = "/auth/LoginForm";
+    	    } else if (resp.status === 400) {
+    	        alert("회원가입에 실패했습니다. 에러 메시지: " + resp.message);
+    	    }
+    	}).fail(function(error) {
+    	    alert(JSON.stringify(error));
+    	});
     },
-         
+    
+    checkDuplicate: function() {
+    	var username = $("#username").val();
+    	
+    	$.ajax({
+    		  type: "POST",
+    		  url: "/auth/checkDuplicate",
+    		  data: JSON.stringify({ username: username }),
+    		  contentType: "application/json;charset=utf-8",
+    		  dataType: "json"
+    		})
+    		.done(function(resp) {
+    		  if (resp.status === 200) {
+    		    // 중복되지 않은 경우
+    		    location.href = "/auth/JoinForm";
+    		    alert("사용 가능한 아이디입니다.");
+
+    		    setTimeout(function() {
+    		      $("#username").focus();
+    		    }, 100);
+    		  } else if (resp.status === 400) {
+    		    // 중복된 경우
+    		    location.href = "/auth/JoinForm";
+    		    alert("중복된 아이디입니다. 다른 아이디를 입력해주세요.");
+    		  }
+    		})
+    		.fail(function(error) {
+    		  alert(JSON.stringify(error));
+    		});
+
+    	},
 }
 index.init();

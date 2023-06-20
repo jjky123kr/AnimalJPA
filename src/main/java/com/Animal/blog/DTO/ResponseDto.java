@@ -12,7 +12,9 @@ import lombok.NoArgsConstructor;
 
 public class ResponseDto<T> {
 
-	 int status;
+	
+	int status;
 	 T data;
+	 private String message;
 	 
 }

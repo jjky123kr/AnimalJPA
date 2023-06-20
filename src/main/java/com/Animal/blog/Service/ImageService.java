@@ -5,7 +5,9 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Stream;
 
@@ -16,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.Animal.blog.Model.Adopt;
 import com.Animal.blog.Model.UploadFile;
+import com.Animal.blog.repository.AdoptRepository;
 import com.Animal.blog.repository.AnimalRepository;
 import com.Animal.blog.repository.UploadFileRepository;
 import com.fasterxml.jackson.databind.ser.std.FileSerializer;
@@ -25,11 +29,14 @@ import com.fasterxml.jackson.databind.ser.std.FileSerializer;
 public class ImageService {
 	@Autowired
 	private UploadFileRepository uploadFileRepository;
+	
+	private AdoptRepository adoptRepository;
 
 	private final Path rootLocation;
 
 	public ImageService(String uploadPath) {
 		this.rootLocation = Paths.get(uploadPath);
+		
 		System.out.println(rootLocation.toString());
 	}
 
@@ -39,16 +46,18 @@ public class ImageService {
 			if (file.isEmpty()) {
 				throw new Exception("Filed to save empth file" + file.getOriginalFilename());
 			}
-
+            
+			
 			String saveFileName = fileSave(rootLocation.toString(), file);
 			UploadFile saveFile = new UploadFile();
 			saveFile.setFileName(file.getOriginalFilename());
 			saveFile.setSaveFileName(saveFileName);
-			saveFile.setContentType(file.getContentType());
+			saveFile.setType(file.getContentType());
 			saveFile.setSize(file.getResource().contentLength());
 			saveFile.setRegisterDate(LocalDateTime.now());
 			saveFile.setFilePath(rootLocation.toString().replace(File.separatorChar, '/') + '/' + saveFileName);
 			uploadFileRepository.save(saveFile);
+		
 			return saveFile;
 
 		} catch (IOException e) {
@@ -76,7 +85,4 @@ public class ImageService {
 
 		return saveFileName;
 	}
-
-
-
 }

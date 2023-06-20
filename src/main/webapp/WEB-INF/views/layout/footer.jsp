@@ -8,7 +8,7 @@
 <body>
 
 	<br>
-	<footer class="footer">
+	<footer class="container-fluid navbar-fixed-bottom">
 
 		<p>
 			<span>Created by Home</span><br>

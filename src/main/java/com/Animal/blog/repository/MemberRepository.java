@@ -7,7 +7,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import com.Animal.blog.Model.Member;
 
 public interface MemberRepository extends JpaRepository<Member, Integer> {
+	 
+	 Optional<Member> findByUsername(String username);
+	 
 
-	 Optional<Member>findByUsername(String username);
+
 
 }

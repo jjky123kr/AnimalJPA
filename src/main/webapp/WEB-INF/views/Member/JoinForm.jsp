@@ -18,8 +18,6 @@ function openDaumPostcode() {
 }		
 </script>
 
-
-
 <main>
 	<form action="/user/join" method="post"  >
 		<table>
@@ -28,7 +26,8 @@ function openDaumPostcode() {
 				<td class="col1">아이디</td>
 				<td class="col2">
 				<input type="text" id="username" name="username">
-				<button type="button" class="btn btn-dark" id="check">중복검사</button>
+				  <button id="btn-check-duplicate" class="btn btn-outline-dark">중복검사</button>
+                  <div id="duplicate-result"></div>
 				</td>
 			</tr>
 
@@ -91,16 +90,12 @@ function openDaumPostcode() {
 
 	</form>
 	
-	<!-- 회원가입 시 버튼으로 js 실행 id="btn-save" 호출-->
 	<br>
 	<div class="col text-center" >
-	<button id="btn-save" class="btn btn-outline-warning" onclick="check();">회원가입</button>
+	<button id="btn-save" class="btn btn-outline-warning">회원가입</button>
 	<button type="reset" class="btn btn-outline-warning">가입 취소</button>
-     </div>
+    </div>
 </main>
-<!-- user.js 실행 코드 -->
-<!-- <script src="/js/Member/User.js"></script>
- -->
 <script src="/js/Member/Member.js"></script>
 
-<%@ include file="../layout/footer.jsp"%>
+<%@ include file="../layout/AdminFooter.jsp"%>

@@ -1,5 +1,8 @@
 package com.Animal.blog.Service;
 
+import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,21 @@ public class MemberService {
 				
 		memberRepository.save(member);
 	}
+	
+
+	// 회원목록
+	public List<Member>회원목록() {
+		// TODO Auto-generated method stub
+		return memberRepository.findAll();
+	}
+
+
+	public boolean isDuplicatedUsername(String username) {
+		 Optional<Member> existingMember = memberRepository.findByUsername(username);
+	        return existingMember.isPresent();
+	}
+
+	
 	
 
 }

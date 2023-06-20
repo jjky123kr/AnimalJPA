@@ -9,7 +9,7 @@
 	margin: 0;
 	padding: 0;
 }
-
+/* 헤더 */
 .contaniner .header {
 	width: 90%;
 	height: 100px;
@@ -20,7 +20,7 @@
 	overflow: hidden;
 }
 
-.contaniner .header  h1 a {
+.contaniner .header  h2 a {
 	text-decoration: none;
 	color: black;
 	font-family: abster;
@@ -31,56 +31,77 @@
 	float: left;
 	margin: 5px;
 	text-align: center;
-	line-height: 30px;
-	padding: 5px;	
+	line-height:30px;
+	padding: 10px;	
 }
 
 .contaniner .nav ul li a {
 	text-decoration: none;
 	color: black;
-	font-size: 19px;
+	font-size:15px;
 }
 
 .contaniner .nav ul li a:hover {
 	color: orange;
 }
 
-
-
-
-
-table {
-	height: 500px;
-	width: 900px;
-	border-top: 2px solid black;
-	margin-right: auto;
-	margin-left: auto;
-	margin-top: 50px;
-	padding-top: 3px;
-	margin-right: auto;
+.container_animal{
+	margin-bottom: 300px;
 }
 
-td {
-	border-bottom: 1px dotted black;
-}
+/* 검색창 */
 
-.col1 {
-	padding: 10px;
+.search{
 	text-align: center;
-	font-weight: bold;
-	font-size: 0.9em;
 }
 
-.col2 {
-	text-align: left;
-	padding: 5px;
+.select{
+	height:40px;
+	width: 100px;
+	border-color: orange;
+	border-radius: 8px;
 }
 
+/* 
+.contaniner .hero{
+  position: absolute;
+  left: 75%;
+  top: 50%;
+  transform: translate(-75%,-50%);
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.contaniner .hero h2{
+  font-size: 25px;
+  color:white;
+  margin-bottom: 20px;
+}
+.contaniner .hero p{
+  font-size: 20px;
+    color:white;
+}
+
+.contaniner .hero button{
+   background-color:  none;
+   border:2px solid darkseagreen;
+   color: darkcyan;
+   padding: 15px 20px;
+   border-radius: 20px;
+   margin-top: 30px;
+   outline: none;
+   cursor: pointer;
+   transition: all .4s;
+}
+.contaniner .hero button:hover{
+  background-color: darkslategray;
+} */
+
+
+
+/* 푸터 */
 .footer {
-	width: 100%;
-	height: 90px;
 	bottom: 0;
-	position:absolute;
+	position:relative;
 	border-top: 1px solid black;
 	padding-top: 30px;
 	color: #808080;

@@ -33,8 +33,8 @@ public class Reply {
 	
 	// 연관관계
 	@ManyToOne //여러개의 답변은 하나의 게시글에 있을수 있다.
-	@JoinColumn(name="boardid")
-	private Board board;
+	@JoinColumn(name="supportId")
+	private Support support;
 	
 	@ManyToOne //하나의 유저는 여러글을 작성할수 있다. 
 	@JoinColumn(name="userid")

@@ -30,18 +30,6 @@
   color: black;
   font-family: abster;
 }
-.contaniner .nav ul li{
-  display: inline-block;
-  margin: 0 10px;
-}
-.contaniner .nav ul li a{
-  text-decoration: none;
-  color:black;
-  font-size: 19px;
-}
-.contaniner .nav ul li a:hover{
-  color: orange;
-}
 
 .contaniner .hero{
   position: absolute;

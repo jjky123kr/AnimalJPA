@@ -18,6 +18,9 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.criteria.Order;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.DynamicInsert;
@@ -41,52 +44,52 @@ public class Member {
    @GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id; // 오라클: 시퀀스 , Mysql: auto_increment
    
-   //@Pattern(regexp= "^[a-z]{1}[a-z0-9]{5,10}+$",message="영문 숫자 조합 6~10자리")
-   //@NotBlank(message = "아이디를 입력하세요")
+   @Pattern(regexp= "^[a-z]{1}[a-z0-9]{5,10}+$",message="아이디영문 숫자 조합 6~10자리")
+   @NotBlank(message = "아이디를 입력하세요")
    
    @Column(nullable=false,length=20)
    private String username;
    
-  // @Pattern(regexp ="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", 
-  //		   message = "비밀번호는 8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요." )
    @Column(nullable=false,length=100)
    private String password;
    
-  // @NotBlank(message = "이름을 입력하세요.")
-  // @Column(nullable=false,length=30)
+  @NotBlank(message = "이름을 입력하세요.")
+  @Column(nullable=false,length=30)
    private String name;  
    
- //@JsonFormat으로 Date 타입 직렬화 (Jaon으로 날짜를 전송할떄 date 값을 패턴을지정하여 DB에 저장)
+    //@JsonFormat으로 Date 타입 직렬화 (Jaon으로 날짜를 전송할떄 date 값을 패턴을지정하여 DB에 저장)
  	@JsonFormat(pattern = "yyyy.MM.dd") 
  	private String brithday;
    
    @Column(nullable=false,length=10)
-  // @Pattern(regexp="^[\\d]{2,3}-[\\d]{3,4}-[\\d]{4}+$",message="휴대폰 번호 입력하세요")
+   @Pattern(regexp = "^[\\d]{2,3}$", message = "휴대폰 번호 앞자리를 입력하세요")
    private String phon1;
    
+   @Pattern(regexp = "^[\\d]{3,4}$", message = "휴대폰 번호 중간자리를 입력하세요")
    @Column(nullable=false,length=10)
    private String phon2;
    
+   @Pattern(regexp = "^[\\d]{4}$", message = "휴대폰 번호 끝번호를 입력하세요")
    @Column(nullable=false,length=10)
    private String phon3;
    
    
-  // @Email(message = "이메일 형식에 맞지 않습니다.")
-  // @NotBlank(message = "이메일을 입력하세요")
+  @Email(message = "이메일 형식에 맞지 않습니다.")
+  @NotBlank(message = "이메일을 입력하세요")
    @Column(nullable=false,length=30)
    private String email;
    
   
-  // @NotBlank(message = "우편 번호을 입력하세요")
+  @NotBlank(message = "우편 번호을 입력하세요")
    @Column(nullable=false,length=30)
    private String post;
    
    
-   //@NotBlank(message = "주소를 입력하세요")
+   @NotBlank(message = "주소를 입력하세요")
    @Column(nullable=false,length=30)
    private String address1;
    
-   //@NotBlank(message = "상세주소를 입력하세요")
+   @NotBlank(message = "상세주소를 입력하세요")
    @Column(nullable=false,length=30)
    private String address2;
    
@@ -96,7 +99,7 @@ public class Member {
    @CreationTimestamp // 시간이 자동으로 입력 (현재 )
    private Timestamp createDate;
    
-//   @Column(nullable=false,length=30)
+//  @Column(nullable=false,length=30)
 //   private String staut;
    
 

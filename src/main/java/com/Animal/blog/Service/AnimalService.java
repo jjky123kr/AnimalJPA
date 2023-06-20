@@ -39,6 +39,7 @@ public class AnimalService {
 	// 동물 목록
 	@Transactional(readOnly = true)
 	public Page<Animal> 글목록(Pageable pageable) {
+		System.out.println("service 드러옴");
 		return animalRepository.findAll(pageable);
 	}
 
