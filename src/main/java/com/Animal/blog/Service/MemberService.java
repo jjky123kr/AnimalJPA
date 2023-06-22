@@ -32,17 +32,33 @@ public class MemberService {
 		memberRepository.save(member);
 	}
 	
-
+	// 중복 아이디
+		public boolean isDuplicatedUsername(String username) {
+			 Optional<Member> existingMember = memberRepository.findByUsername(username);
+		        return existingMember.isPresent();
+		}
+	
 	// 회원목록
+	@Transactional(readOnly = true)
 	public List<Member>회원목록() {
 		// TODO Auto-generated method stub
 		return memberRepository.findAll();
 	}
 
+	
 
-	public boolean isDuplicatedUsername(String username) {
-		 Optional<Member> existingMember = memberRepository.findByUsername(username);
-	        return existingMember.isPresent();
+
+	// 카카오 로그인 시 회원 찾기 
+	@Transactional(readOnly = true)
+	public Member 회원찾기(String username) {
+		
+		Member member = memberRepository.findByUsername(username).orElseGet(()->{
+			System.out.println("회원찾기 서비스");
+			return new Member();
+			
+		});
+		return member;
+		
 	}
 
 	

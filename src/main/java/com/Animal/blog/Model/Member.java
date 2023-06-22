@@ -38,60 +38,63 @@ import lombok.NoArgsConstructor;
 //ORM->Java(다른언어)object ->테이블로 매핑해주는 기술
 @Entity // User 클래스가 읽어서 Mysql에 테이블이 생성이 된다. 
 @DynamicInsert //insert시에 null인 필드를 제외 해준다.
+@Builder
 public class Member {
 	
    @Id
    @GeneratedValue(strategy=GenerationType.IDENTITY)
    private int id; // 오라클: 시퀀스 , Mysql: auto_increment
    
-   @Pattern(regexp= "^[a-z]{1}[a-z0-9]{5,10}+$",message="아이디영문 숫자 조합 6~10자리")
-   @NotBlank(message = "아이디를 입력하세요")
+   //@Pattern(regexp= "^[a-z]{1}[a-z0-9]{5,10}+$",message="아이디영문 숫자 조합 6~10자리")
+  // @NotBlank(message = "아이디를 입력하세요")
    
-   @Column(nullable=false,length=20)
+   @Column(nullable=false,length=100)
    private String username;
    
    @Column(nullable=false,length=100)
    private String password;
    
-  @NotBlank(message = "이름을 입력하세요.")
-  @Column(nullable=false,length=30)
+  //@NotBlank(message = "이름을 입력하세요.")
+   @Column(length=30)
    private String name;  
    
     //@JsonFormat으로 Date 타입 직렬화 (Jaon으로 날짜를 전송할떄 date 값을 패턴을지정하여 DB에 저장)
  	@JsonFormat(pattern = "yyyy.MM.dd") 
  	private String brithday;
    
-   @Column(nullable=false,length=10)
-   @Pattern(regexp = "^[\\d]{2,3}$", message = "휴대폰 번호 앞자리를 입력하세요")
+   @Column(length=10)
+   //@Pattern(regexp = "^[\\d]{2,3}$", message = "휴대폰 번호 앞자리를 입력하세요")
    private String phon1;
    
-   @Pattern(regexp = "^[\\d]{3,4}$", message = "휴대폰 번호 중간자리를 입력하세요")
-   @Column(nullable=false,length=10)
+   //@Pattern(regexp = "^[\\d]{3,4}$", message = "휴대폰 번호 중간자리를 입력하세요")
+   @Column(length=10)
    private String phon2;
    
-   @Pattern(regexp = "^[\\d]{4}$", message = "휴대폰 번호 끝번호를 입력하세요")
-   @Column(nullable=false,length=10)
+  // @Pattern(regexp = "^[\\d]{4}$", message = "휴대폰 번호 끝번호를 입력하세요")
+   @Column(length=10)
    private String phon3;
    
    
-  @Email(message = "이메일 형식에 맞지 않습니다.")
-  @NotBlank(message = "이메일을 입력하세요")
+ // @Email(message = "이메일 형식에 맞지 않습니다.")
+ // @NotBlank(message = "이메일을 입력하세요")
    @Column(nullable=false,length=30)
    private String email;
    
   
-  @NotBlank(message = "우편 번호을 입력하세요")
-   @Column(nullable=false,length=30)
+  //@NotBlank(message = "우편 번호을 입력하세요")
+   @Column(length=30)
    private String post;
    
    
-   @NotBlank(message = "주소를 입력하세요")
-   @Column(nullable=false,length=30)
+   //@NotBlank(message = "주소를 입력하세요")
+   @Column(length=30)
    private String address1;
    
-   @NotBlank(message = "상세주소를 입력하세요")
-   @Column(nullable=false,length=30)
+  // @NotBlank(message = "상세주소를 입력하세요")
+   @Column(length=30)
    private String address2;
+   
+   private String nickname;
    
    @Enumerated(EnumType.STRING)
    private RoleType role; //Enum을 사용한다. => 도메인 (범위)를 정해준다. //user,admin ,manager
@@ -99,8 +102,8 @@ public class Member {
    @CreationTimestamp // 시간이 자동으로 입력 (현재 )
    private Timestamp createDate;
    
-//  @Column(nullable=false,length=30)
-//   private String staut;
+   private String oauth; // kakao, googel
+   
    
 
 }     

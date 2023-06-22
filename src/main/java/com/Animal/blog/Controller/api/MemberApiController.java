@@ -29,18 +29,7 @@ public class MemberApiController {
 	private MemberService memberService;
 
 	@PostMapping("/auth/joinProc")
-	public ResponseDto<Integer>save(@Valid @RequestBody Member member, BindingResult result ){
-		  if (result.hasErrors()) {
-		        // 유효성 검사 실패 처리
-		        String errorMessage = result.getFieldErrors()
-		                .stream()
-		                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-		                .findFirst()
-		                .orElse("유효성 검사 실패");
-
-		        return new ResponseDto<>(400, null, errorMessage);
-		    }
-
+	public ResponseDto<Integer>save(@RequestBody Member member){
 		    member.setRole(RoleType.USER);
 		    memberService.회원가입(member);
 		    return new ResponseDto<>(200, 1, null);

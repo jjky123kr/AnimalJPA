@@ -6,6 +6,9 @@ server:
       charset: UTF-8
       enabled: true
       force: true
+
+cos:
+   key: cos1234 
     
 spring:
   mvc:
@@ -38,7 +41,21 @@ spring:
     multipart:
       location: C:\upload
       maxFileSize: 300MB
-      maxRequestSize: 200MB     
+      maxRequestSize: 200MB    
       
+# 구글 로그인       
+  security:
+    oauth2:
+      client:
+        registration:
+          google: # /oauth2/authorization/google 이 주소를 동작하게 한다.
+            client-id: 271421337386-4tcng428ubjktubhcpcfufpdfvu9asrk.apps.googleusercontent.com 
+            client-secret: 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 
+            scope:
+              - email
+              - profile
+           
+            
+    
      
 

@@ -3,7 +3,9 @@ package com.Animal.blog.Config;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.DefaultSecurityFilterChain;
@@ -18,6 +20,12 @@ public class SecurityConfig {
 
 	@Autowired
 	private PrincipalDetailService PrincipalDetailService; // 주입
+	
+	@Bean
+	public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration)
+			throws Exception {
+		return authenticationConfiguration.getAuthenticationManager();
+	}
 
 	@Bean
 	BCryptPasswordEncoder encodePWD() {
@@ -47,7 +55,12 @@ public class SecurityConfig {
 	      .formLogin()
 	      .loginPage("/auth/LoginForm")
 	      .loginProcessingUrl("/auth/loginProc") // 스프링시큐리티가 해당 주소로 요청오는 로그인을 가로챈다.
-          .defaultSuccessUrl("/main") ;  // 대신 로그인	      
-	      return http.build();
+          .defaultSuccessUrl("/main")  // 대신 로그인	
+		  .and()
+		  .oauth2Login() //소셜 로그인 
+		  .loginPage("/auth/LoginForm"); 
+          // 구글 로그인이 완료된 뒤의 후처리가 필요 Tip : 엑세스토큰+사용자프로필 
+          //1.코드받기(인증) 2.엑세스토큰(사용자 정보 권한)3.사용자프로필 정보를 가져온다.// 4.사용자 정보를 토대로 자동 로그인 실행
+	       return http.build();
 	}
 }
