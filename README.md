@@ -18,6 +18,13 @@
 
 ## summernote 에디터 사용 (게시판)
 
+<img width="1133" alt="a" src="https://github.com/jjky123kr/AnimalJPA/assets/107549149/d3b60096-6b86-485c-9d6a-5be6b0f19067">
+
+### Summernote는 이미지를 저장하는 방식 바이러리 이다. 
+### 바이러리의 단점 : 용량이 너무 많이 차지한다.
+### 그래서 이미지를 업로드 할때 DB에 따로 저장하는 코드를 추가한다. 
+
+
 ## Spring Security 
 ### 권한 설정 과 회원가입 해야 사용가능 
 
@@ -64,51 +71,9 @@
 	}
  ```
 
-## rest 방식으로 유효성 검사
+<img width="874" alt="로그인" src="https://github.com/jjky123kr/AnimalJPA/assets/107549149/33746539-a010-4971-a71f-516888f52d3a">
 
-### js
-* 글 등록 할 경우 alert 에러 메세지를 출력한다. 
-```java
- $.ajax({
-		 type : "POST",
-		 url:"/api/Adopt",
-		 data:JSON.stringify(data), 
-		 contentType:"application/json;charset=utf-8", 													
-		 dataType:"json"
-		}).done(function(resp) {
-    	    if (resp.status === 200) {
-    	        alert("입양등록 완료되었습니다.");
-    	        location.href = "/AdoptList";
-    	    } else if (resp.status === 400) {
-    	        alert("입양등록 실패했습니다. 에러 메시지: " + resp.message);
-    	    }
-    	}).fail(function(error) {
-    	    alert(JSON.stringify(error));
-    	});
-    },
-```
-### Controller 페이지 
-* @Valid 사용 과, BindingResult result 결과를 보여준다. 
-```java
-// 입양 등록	
-	@PostMapping("/api/Adopt")
-	public ResponseDto<Integer> save(@Valid @RequestBody Adopt adopt, BindingResult result, @AuthenticationPrincipal PrincipalDetail principal) {
-	    if (result.hasErrors()) {
-	        // 유효성 검사 실패 처리
-	        String errorMessage = result.getFieldErrors()
-	                .stream()
-	                .map(DefaultMessageSourceResolvable::getDefaultMessage)
-	                .findFirst()
-	                .orElse("유효성 검사 실패");
 
-	        return new ResponseDto<>(400, null, errorMessage);
-	    }
-
-	    System.out.println("save: 호출");
-	    adoptService.save(adopt, principal.getMember());
-	    return new ResponseDto<>(200, 1, null);
-	}
-```
 ## 게시판 검색 기능 
 
 *  Page<Adopt>findByTitleContaining(String keyword, Pageable pageable);
@@ -123,4 +88,11 @@
 	}
 ```
 
+<img width="865" alt="검색" src="https://github.com/jjky123kr/AnimalJPA/assets/107549149/58f4fac7-f023-4535-a782-26126ef0821b">
+	
+결과 페이지	
+	
+![image](https://github.com/jjky123kr/AnimalJPA/assets/107549149/4452e9d5-1ae1-4edf-90ec-74ea743c2e81)
+
+	
 
